@@ -18,6 +18,9 @@
 /* USER CODE END Header */
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
+#include <stdint.h>
+#include <stdio.h>
+#include <string.h>
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
@@ -58,6 +61,7 @@ static void MX_DMA_Init(void);
 static void MX_ADC1_Init(void);
 static void MX_TIM1_Init(void);
 static void MX_USART2_UART_Init(void);
+void uart_call(void);
 /* USER CODE BEGIN PFP */
 
 /* USER CODE END PFP */
@@ -66,6 +70,7 @@ static void MX_USART2_UART_Init(void);
 /* USER CODE BEGIN 0 */
 #define ADC_DMA_BUFFER_SIZE 2
 uint32_t adc_dma_buffer[ADC_DMA_BUFFER_SIZE];
+uint8_t uart_buffer[4];
 
 /* USER CODE END 0 */
 
@@ -73,6 +78,23 @@ uint32_t adc_dma_buffer[ADC_DMA_BUFFER_SIZE];
   * @brief  The application entry point.
   * @retval int
   */
+
+void uart_call(void)
+{
+    uint32_t value = adc_dma_buffer[0];
+
+    uart_buffer[0] = (value >> 24) & 0xFF;
+    uart_buffer[1] = (value >> 16) & 0xFF;
+    uart_buffer[2] = (value >> 8) & 0xFF;
+    uart_buffer[3] = value & 0xFF;
+
+    char msg[50];
+
+    sprintf(msg,"ADC: %08lX\r\n", value);
+
+    HAL_UART_Transmit(&huart2,(uint8_t*)msg,strlen(msg),1000);
+}
+
 int main(void)
 {
 
@@ -111,15 +133,14 @@ int main(void)
   HAL_TIM_Base_Start_IT( &htim1);
 
  // HAL_TIM_PWM_Start(&htim16, TIM_CHANNEL_1);
-   HAL_ADC_Start_DMA(&hadc1, adc_dma_buffer, ADC_DMA_BUFFER_SIZE);
-  while (1)
- 
-  {
-    /* USER CODE END WHILE */
+  HAL_ADC_Start_DMA(&hadc1, adc_dma_buffer, ADC_DMA_BUFFER_SIZE);
 
-    /* USER CODE BEGIN 3 */
-    
-  }
+   
+  while (1)
+{
+    uart_call();
+    HAL_Delay(1000);
+}
   /* USER CODE END 3 */
 }
 
@@ -259,7 +280,7 @@ static void MX_TIM1_Init(void)
 
   /* USER CODE END TIM1_Init 1 */
   htim1.Instance = TIM1;
-  htim1.Init.Prescaler = 169;
+  htim1.Init.Prescaler = 159;
   htim1.Init.CounterMode = TIM_COUNTERMODE_UP;
   htim1.Init.Period = 9999;
   htim1.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
@@ -359,7 +380,6 @@ static void MX_DMA_Init(void)
   */
 static void MX_GPIO_Init(void)
 {
-  GPIO_InitTypeDef GPIO_InitStruct = {0};
   /* USER CODE BEGIN MX_GPIO_Init_1 */
 
   /* USER CODE END MX_GPIO_Init_1 */
@@ -367,14 +387,6 @@ static void MX_GPIO_Init(void)
   /* GPIO Ports Clock Enable */
   __HAL_RCC_GPIOA_CLK_ENABLE();
   __HAL_RCC_GPIOB_CLK_ENABLE();
-
-  /*Configure GPIO pin : PB8 */
-  GPIO_InitStruct.Pin = GPIO_PIN_8;
-  GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
-  GPIO_InitStruct.Pull = GPIO_NOPULL;
-  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
-  GPIO_InitStruct.Alternate = GPIO_AF1_TIM16;
-  HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
 
   /* USER CODE BEGIN MX_GPIO_Init_2 */
 
