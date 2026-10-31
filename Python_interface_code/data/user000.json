@@ -1,0 +1,118 @@
+{
+    "id": "000",
+    "name": "Anonymous",
+    "surname": "",
+    "prosthesis_type": "",
+    "emg1_idle_voltage": 324.60274227252694,
+    "emg2_idle_voltage": 456.28855844403193,
+    "emg1_active_voltage": 1939.3444444444442,
+    "emg2_active_voltage": 1748.552947052947,
+    "sessions": [
+        {
+            "session_start": "2026-10-03T16:53:40.688898",
+            "session_end": "2026-10-03T16:53:51.517096",
+            "emg1_idle_history": [
+                140.51642500121255,
+                31.46491964022992,
+                13.544616170403978
+            ],
+            "emg2_idle_history": [
+                733.0140970210999,
+                189.32135988806104,
+                81.49663758441955
+            ],
+            "emg1_samples": [
+                {
+                    "timestamp": "2026-10-03T16:53:43.265493",
+                    "sample_voltage": 1850.5,
+                    "duration": 0.399619
+                },
+                {
+                    "timestamp": "2026-10-03T16:53:46.263262",
+                    "sample_voltage": 2198.9333333333334,
+                    "duration": 1.499261
+                }
+            ],
+            "emg2_samples": [
+                {
+                    "timestamp": "2026-10-03T16:53:44.564308",
+                    "sample_voltage": 1642.0,
+                    "duration": 0.199715
+                },
+                {
+                    "timestamp": "2026-10-03T16:53:45.264199",
+                    "sample_voltage": 1582.0,
+                    "duration": 0.299371
+                },
+                {
+                    "timestamp": "2026-10-03T16:53:48.262057",
+                    "sample_voltage": 1988.1538461538462,
+                    "duration": 1.299372
+                }
+            ]
+        },
+        {
+            "session_start": "2026-10-03T16:55:52.650644",
+            "session_end": "2026-10-03T16:56:06.186093",
+            "emg1_idle_history": [
+                1044.5316018071558,
+                580.4124134210713,
+                137.14647759508824
+            ],
+            "emg2_idle_history": [
+                1035.1058376091,
+                598.7441289348686,
+                100.04928962664275
+            ],
+            "emg1_samples": [
+                {
+                    "timestamp": "2026-10-03T16:56:01.783789",
+                    "sample_voltage": 1768.6,
+                    "duration": 0.499818
+                }
+            ],
+            "emg2_samples": [
+                {
+                    "timestamp": "2026-10-03T16:55:52.689532",
+                    "sample_voltage": 2248.5,
+                    "duration": 0.599544
+                },
+                {
+                    "timestamp": "2026-10-03T16:55:53.988533",
+                    "sample_voltage": 1707.3333333333333,
+                    "duration": 0.299693
+                },
+                {
+                    "timestamp": "2026-10-03T16:55:54.887674",
+                    "sample_voltage": 1857.0,
+                    "duration": 0.299913
+                },
+                {
+                    "timestamp": "2026-10-03T16:55:55.587229",
+                    "sample_voltage": 1776.4285714285713,
+                    "duration": 0.699866
+                },
+                {
+                    "timestamp": "2026-10-03T16:55:56.487047",
+                    "sample_voltage": 1674.8666666666666,
+                    "duration": 1.498974
+                },
+                {
+                    "timestamp": "2026-10-03T16:56:02.383188",
+                    "sample_voltage": 1591.6,
+                    "duration": 0.49963
+                },
+                {
+                    "timestamp": "2026-10-03T16:56:02.982662",
+                    "sample_voltage": 1569.0,
+                    "duration": 0.100035
+                },
+                {
+                    "timestamp": "2026-10-03T16:56:03.183017",
+                    "sample_voltage": 1597.2,
+                    "duration": 0.499085
+                }
+            ]
+        }
+    ]
+}
